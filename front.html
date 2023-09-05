@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Energia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+        }
+        p {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Energia</h1>
+        <p id="result-message">Aguardando previsão...</p>
+    </div>
+    <script>
+        // Função para buscar a previsão da API e exibir o resultado
+        function getPrediction() {
+            fetch('/predict', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    event: [1, 2, 3, 4, 5, 6, 7], // Insira os valores do evento aqui
+                    temperature: 32, // Insira a temperatura aqui
+                    tensao: 210, // Insira a tensão aqui
+                    corrente: 12, // Insira a corrente aqui
+                    pressao_oleo: 18, // Insira a pressão do óleo aqui
+                    pressao_admissao: 35 // Insira a pressão de admissão aqui
+                }),
+            })
+            .then(response => response.json())
+            .then(result => {
+                const resultMessage = document.getElementById('result-message');
+                resultMessage.textContent = result.message;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // Chama a função de busca da previsão ao carregar a página
+        window.addEventListener('load', getPrediction);
+    </script>
+</body>
+</html>
