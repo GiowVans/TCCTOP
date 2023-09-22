@@ -15,7 +15,7 @@ import sqlite3
 def load_data():
     # Conectar ao banco de dados SQLite
     conn = sqlite3.connect("C:\\Users\\giova\\OneDrive\\Área de Trabalho\\TCCTOP-main\\codigoV1\\Banco_GMG.db\\DADOS_GMG")
-
+    con = sqlite3.connect(caminho)
    # Executar uma consulta SQL para recuperar os dados da tabela no SQLite
     query = "SELECT * FROM DADOS_GMG"
     data = pd.read_sql_query(query, conn)
