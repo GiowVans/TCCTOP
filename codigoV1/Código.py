@@ -20,7 +20,7 @@ def load_data():
 def create_model():
     # cria o modelo sequencial de rede neural
     model = tf.keras.Sequential([
-        tf.keras.layers.Dense(64, activation='relu', input_shape=(7,)),
+        tf.keras.layers.Dense(64, activation='relu', input_shape=(3,)),
         tf.keras.layers.Dense(64, activation='relu'),
         tf.keras.layers.Dense(1)
     ])
@@ -55,5 +55,5 @@ model = create_model()
 history, mae = train_model(X_train, y_train, X_test, y_test, model)
 
 # recebe um novo evento do gerador de energia e faz uma previsão com o modelo
-event = np.array([[1, 2, 3, 4, 5, 6, 7]])
+event = np.array([[1, 2, 3]])
 predict(model, event)
